@@ -3,52 +3,6 @@ from django.db import models
 
 
 # Create your models here.
-class Group(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class GroupPermissions(models.Model):
-    group = models.ForeignKey(Group, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-class User(models.Model):
-    """User"""
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=False null=False)
-    is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=30)
-    email = models.CharField(max_length=254)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-    last_name = models.CharField(max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user' 
-
-
 class Clazz(models.Model):
     """Class"""
     year = models.CharField("grade", max_length=20)

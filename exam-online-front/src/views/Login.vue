@@ -73,7 +73,7 @@
 					this.$refs[formName].validate((valide) => {
 						if (valide) {
 							axios.post(`api/jwt-auth/`, this.loginForm).then(res => {
-								console.log(res); //处理成功的函数 相当于success
+								console.log(res); //The function of successful processing is equivalent to success
 								if (res.status == 200) {
 									this.$message({
 										message: 'login successful',

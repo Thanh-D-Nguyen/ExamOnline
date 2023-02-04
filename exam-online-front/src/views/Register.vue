@@ -7,7 +7,7 @@
 			<el-main>
 				<div id="register-from">
 					<el-form ref="registerForm" status-icon :model="registerForm" :rules="rules">
-						<el-form-item label="student ID" prop="username">
+						<el-form-item label="Student ID" prop="username">
 							<el-input v-model="registerForm.username" autocomplete="off"></el-input>
 							</el-input>
 						</el-form-item>
@@ -15,7 +15,7 @@
 							<el-input v-model="registerForm.name" autocomplete="off"></el-input>
 							</el-input>
 						</el-form-item>
-						<el-form-item label="password" prop="password">
+						<el-form-item label="Password" prop="password">
 							<el-input type="password" v-model="registerForm.password" autocomplete="off"></el-input>
 							</el-input>
 						</el-form-item>

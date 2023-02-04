@@ -1,7 +1,7 @@
 <template>
 	<div id="error">
-		<h1>404错误界面</h1>
-		<p>访问的路径不存在</p>
+		<h1>404 error interface</h1>
+		<p>The path of access does not exist</p>
 	</div>
 </template>
 

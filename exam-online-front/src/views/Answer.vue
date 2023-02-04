@@ -4,7 +4,7 @@
 			<el-aside width="300px">
 				<el-card class="box-card" shadow="hover">
 					<time-count-down :totalTime="getExam.total_time" @hand-in="handIn"></time-count-down>
-					<el-divider content-position="center">选择题</el-divider>
+					<el-divider content-position="center">Choice</el-divider>
 					<el-row class="question-tag" type="flex" justify=" space-around ">
 						<el-col :span="24">
 							<el-tag v-for="(item, index) in choices" :key="item.id" :type="index + 1 == current ? 'success' : ''" :effect="index + 1 == current || answer[0][index] != null ? 'dark' : 'plain'"
@@ -13,7 +13,7 @@
 							</el-tag>
 						</el-col>
 					</el-row>
-					<el-divider content-position="center">填空题</el-divider>
+					<el-divider content-position="center">Blank</el-divider>
 					<el-row class="question-tag">
 						<el-col :span="24">
 							<el-tag v-for="(item, index) in fills" :key="item.id" :type="index + fillPos == current ? 'success' : ''"
@@ -22,7 +22,7 @@
 							</el-tag>
 						</el-col>
 					</el-row>
-					<el-divider content-position="center">判断题</el-divider>
+					<el-divider content-position="center">True or False</el-divider>
 					<el-row class="question-tag">
 						<el-col :span="24">
 							<el-tag v-for="(item, index) in judges" :key="item.id" :type="index + judgePos == current ? 'success' : ''"
@@ -32,7 +32,7 @@
 						</el-col>
 
 					</el-row>
-					<el-divider content-position="center">编程题</el-divider>
+					<el-divider content-position="center">Programming</el-divider>
 					<el-row class="question-tag">
 						<el-col :span="24">
 							<el-tag v-for="(item, index) in programs" :key="item.id" :type="index + programPos == current ? 'success' : ''"
@@ -43,12 +43,12 @@
 					</el-row>
 					<el-divider></el-divider>
 					<div class="bottom clearfix">
-						<el-tag type="primary" effect="dark"></el-tag>已答
-						<el-tag type="primary" effect="plain"></el-tag>未答
-						<el-tag type="success" effect="dark"></el-tag>当前
+						<el-tag type="primary" effect="dark"></el-tag>Answer
+						<el-tag type="primary" effect="plain"></el-tag>Not answer
+						<el-tag type="success" effect="dark"></el-tag>current
 						<br />
 						<br />
-						<el-button type="primary" class="button" @click="handIn">交卷</el-button>
+						<el-button type="primary" class="button" @click="handIn">carry out an assignment</el-button>
 					</div>
 				</el-card>
 			</el-aside>
@@ -58,22 +58,22 @@
 						<div id="information">
 							<el-row type="flex" justify="center">
 								<el-col :span="4">
-									<span>学号：{{getUser.username}}</span>
+									<span>Student ID：{{getUser.username}}</span>
 								</el-col>
 								<el-col :span="4">
-									<span>姓名：{{getStudent.name}}</span>
+									<span>Name：{{getStudent.name}}</span>
 								</el-col>
 								<el-col :span="4">
-									<span>性别：{{getStudent.gender = 'M' ? '男' : '女'}}</span>
+									<span>Gender：{{getStudent.gender = 'M' ? 'Male' : 'Female'}}</span>
 								</el-col>
 								<el-col :span="4">
-									<span>专业：{{clazz.major}}</span>
+									<span>Major：{{clazz.major}}</span>
 								</el-col>
 								<el-col :span="4">
-									<span>年级：{{clazz.year}}</span>
+									<span>Grade：{{clazz.year}}</span>
 								</el-col>
 								<el-col :span="4">
-									<span>班级：{{clazz.clazz}}</span>
+									<span>Class：{{clazz.clazz}}</span>
 								</el-col>
 							</el-row>
 						</div>
@@ -97,15 +97,15 @@
 						<div id="judge" v-for="(item, index) in judges" v-show="index + judgePos == current">
 							<h1>{{index + judgePos}}. {{item.question}} [{{item.socre}}分]</h1>
 							<el-radio-group v-model="answer[2][index]">
-								<el-radio label="T" border>正确</el-radio><br />
-								<el-radio label="F" border>错误</el-radio><br />
+								<el-radio label="T" border>Correct</el-radio><br />
+								<el-radio label="F" border>Mistake</el-radio><br />
 							</el-radio-group>
 						</div>
 						<div id="program" v-for="(item, index) in programs" v-show="index + programPos == current">
 							<h1>{{index + programPos}}. {{item.question}} [{{item.score}}分]</h1>
 							<el-row type="flex" justify="space-around">
 								<el-col :span="10">
-									编程区
+									Programming area
 									<el-input type="textarea" :autosize="{ minRows: 18, maxRows: 18}" v-model="answer[3][index]">
 									</el-input>
 								</el-col>
@@ -115,7 +115,7 @@
 								<el-col :span="10">
 									<!-- <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 30}" v-model="item.test_case" disabled>
 									</el-input> -->
-									输出信息
+									Output information
 									<el-input type="textarea" :autosize="{ minRows: 18, maxRows: 18}" v-model="testMsg" disabled>
 									</el-input>
 								</el-col>
@@ -155,17 +155,17 @@
 					[],
 					[],
 					[]
-				], //保存已作答的答案
-				current: 1, //当前题号
-				totalScore: 0, //总分
-				testMsg: "", //编程题测试信息
+				], //Save the answer that has been answered
+				current: 1, //Current question number
+				totalScore: 0, //Total score
+				testMsg: "", //Programming Questions Test Information
 			}
 		},
 		components: {
 			TimeCountDown
 		},
 		computed: {
-			//用计算属性显示结果
+			//Use the calculation attribute to display the result
 			fillPos() {
 				return this.choices.length + 1;
 			},
@@ -198,7 +198,7 @@
 			}
 		},
 		methods: {
-			// 获取班级信息
+			// Get class information
 			getClazzInfo() {
 				this.$axios(`/api/clazzs/${this.getStudent.clazz}/?format=json`).then(res => {
 					console.log(res.data)
@@ -207,7 +207,7 @@
 					console.log(error)
 				})
 			},
-			// 获取选择题
+			// Obtaining multiple questions
 			getChoiceInfo() {
 				this.$axios(`/api/choices/?format=json`, {
 					params: {
@@ -221,7 +221,7 @@
 					console.log(error)
 				})
 			},
-			// 获取填空题
+			// Get a blank question
 			getFillInfo() {
 				this.$axios('/api/fills/?format=json', {
 					params: {
@@ -235,7 +235,7 @@
 					console.log(error)
 				})
 			},
-			// 获取判断题
+			// Get judgment questions
 			getJudgeInfo() {
 				this.$axios(`/api/judges/?format=json`, {
 					params: {
@@ -249,7 +249,7 @@
 					console.log(error)
 				})
 			},
-			// 获取编程题
+			// Get an program question
 			getProgramInfo() {
 				this.$axios(`/api/programs/?format=json`, {
 					params: {
@@ -259,79 +259,79 @@
 				}).then(res => {
 					this.programs = res.data
 					console.log(this.programs)
-					//如果是编程题，第一次加载答题模板
+					//If it is a programming question, the first loaded answer template
 					this.loadProgram();
 				}).catch(error => {
 					console.log(error)
 				})
 			},
-			// 下一题
+			//next question
 			nextQuestion() {
 				console.log(this.current,this.totalNum)
 				if (this.current == this.totalNum) {
-					this.$message("已经是最后一题了！")
+					this.$message("It's the last question！")
 				} else {
 					this.current += 1
 				}
-				//如果是编程题，第一次加载答题模板
+				//If it is a programming question, the first loaded answer template
 				this.loadProgram();
 			},
 			// 上一题
 			lastQuestion() {
 				if (this.current == 1) {
-					this.$message("已经是第一题了！")
+					this.$message("Already the first question！")
 				} else {
 					this.current -= 1
 				}
-				//如果是编程题，第一次加载答题模板
+				//If it is a programming question, the first loaded answer template
 				this.loadProgram();
 			},
-			// 点击切换题目
+			// Click to switch questions
 			changeQuestion(number) {
 				this.current = number
-				//如果是编程题，第一次加载答题模板
+				//If it is a programming question, the first loaded answer template
 				this.loadProgram();
 			},	
-			// 第一次加载编程题答题模板
+			// The first load of programming questions answer template
 			loadProgram() {
 				let index = this.current - parseInt(this.programPos)
 				if (index >= 0 && this.answer[3][index] == null) {
 					this.answer[3][index] = this.programs[index].answer_template;
 				}
-				// 清空输出信息
+				// Clear output information
 				this.testMsg = null;
 			},
-			// 测试编程题
+			// Test preparation questions
 			checkProgram(index) {
 				const msg = this
 				axios.post(`api/check-program/`, {
 					'answer': this.answer[3][index] == undefined ? '' : this.answer[3][index],
 					'program': this.programs[index]
-				}).then(res => { //处理成功的函数 相当于success
+				}).then(res => { //The successful processing function is equivalent to Success
 					if (res) {
 						if (res.data.message == 'pass') {
 							msg.$message({
-								message: '恭喜你，通过过测试',
+								message: 'Congratulations, pass the test',
 								type: 'success'
 							});
 						} else {
 							msg.$message({
-								message: '错误，未通过测试',
+								message: 'Error, not passed the test',
 								type: 'warning'
 							});
 						}
 						this.testMsg = res.data.message
 					} else {
 						msg.$message({
-							message: '未响应',
+							message: 'No response',
 						});
 					}
-				}).catch(function(error) { //错误处理 相当于error
+				}).catch(function(error) { //Error treatment is equivalent to ERROR
 					console.log(error)
 					this.testMsg = res.data.error
 				})
 			},
-			//阅卷
+			//Scroll
 			goOverPaper() {
 				this.totalScore = 0;
 				this.goOverChoice();
@@ -339,7 +339,7 @@
 				this.goOverJudge();
 				this.goOverProgram();
 			},
-			//选择题阅卷
+			//Selected Questions Review
 			goOverChoice() {
 				for (let i = 0; i < this.choices.length; i++) {
 					if (this.isPractice == true) {
@@ -349,22 +349,22 @@
 							choice_id: this.choices[i].id,
 							your_answer: this.answer[0][i]
 						}).then(res => {
-							console.log(res); //处理成功的函数 相当于success
+							console.log(res); //The function of successful processing is equivalent to success
 						
 						}).catch(function(error) {
-							console.log(error) //错误处理 相当于error
+							console.log(error) //Error treatment is equivalent to error
 						});
 					}	
-					//判断是否正确
+					//Determine whether it is correct
 					if (this.choices[i].right_answer == this.answer[0][i]) {
 						this.totalScore += this.choices[i].score;
 					}
 				}
 			},
-			//填空题阅卷
+			//Fill
 			goOverFill() {
 				for (let i = 0; i < this.fills.length; i++) {
-					//如果是模拟练习，保存答题记录
+					//If it is an analog practice, save the answer record
 					if (this.isPractice == true) {
 						axios.post(`api/records/fills/`, {
 							practice_id: this.getPractice.id,
@@ -372,22 +372,22 @@
 							fill_id: this.fills[i].id,
 							your_answer: this.answer[1][i]
 						}).then(res => {
-							console.log(res); //处理成功的函数 相当于success
+							console.log(res); //The function of successful processing is equivalent to success
 						
 						}).catch(function(error) {
-							console.log(error) //错误处理 相当于error
+							console.log(error) //Error treatment is equivalent to error
 						});
 					}	
-					//判断是否正确
+					//Determine whether it is correct
 					if (this.fills[i].right_answer == this.answer[1][i]) {
 						this.totalScore += this.fills[i].score;
 					}
 				}
 			},
-			//判断题阅卷
+			//Judgment Paper
 			goOverJudge() {
 				for (let i = 0; i < this.judges.length; i++) {
-					//如果是模拟练习，保存答题记录
+					//If it is an analog practice, save the answer record
 					if (this.isPractice == true) {
 						axios.post(`api/records/judges/`, {
 							practice_id: this.getPractice.id,
@@ -395,30 +395,30 @@
 							judge_id: this.judges[i].id,
 							your_answer: this.answer[2][i]
 						}).then(res => {
-							console.log(res); //处理成功的函数 相当于success
+							console.log(res); //The function of successful processing is equivalent to success
 						
 						}).catch(function(error) {
-							console.log(error) //错误处理 相当于error
+							console.log(error) //Error treatment is equivalent to error
 						});
 					}	
-					//判断是否正确
+					//Determine whether it is correct
 					if (this.judges[i].right_answer == this.answer[2][i]) {
 						this.totalScore += this.judges[i].score;
 					}
 				}
 			},
-			//编程题阅卷
+			//Programming Paper
 			goOverProgram: async function() {
 				for (let i = 0; i < this.programs.length; i++) {
-					//判断是否正确
+					//Determine whether it is correct
 					await axios.post(`api/check-program/`, {
 						'answer': this.answer[3][i] == undefined ? '' : this.answer[3][i],
 						'program': this.programs[i]
-					}).then(res => { //处理成功的函数 相当于success
+					}).then(res => { //The function of successful processing is equivalent to success
 						if (res && res.data.message == "pass") {
 							this.totalScore += this.programs[i].score;
 						}
-						//如果是模拟练习，保存答题记录
+						//If it is an analog practice, save the answer record
 						if (this.isPractice == true) {
 							axios.post(`api/records/programs/`, {
 								practice_id: this.getPractice.id,
@@ -427,33 +427,33 @@
 								your_answer: this.answer[3][i],
 								cmd_msg: res.data.message
 							}).then(res => {
-								console.log(res); //处理成功的函数 相当于success
+								console.log(res); //The function of successful processing is equivalent to success
 							
 							}).catch(function(error) {
-								console.log(error) //错误处理 相当于error
+								console.log(error) //Error treatment is equivalent toerror
 							});
 						}
 					}).catch(function(error) {
-						//错误处理 相当于error
+						//Error treatment is equivalent to error
 					})
 				}
 			},
-			//交卷
+			//carry out an assignment
 			handIn() {
 				this.goOverPaper();
 				const temp = this
-				clearTimeout(this.timer); //清除延迟执行 
-				this.timer = setTimeout(() => { //设置延迟执行
+				clearTimeout(this.timer); //Clear delay execution
+				this.timer = setTimeout(() => { //Set the delay execution
 					if (this.isPractice == true) {
 						this.$message({
 							message: '你本次的测试成绩为：' + this.totalScore + '分',
 							type: 'success'
 						});
-						//跳转到模拟练习
+						//Jump to simulation exercise
 						this.$router.push('/practice')
 					} else {
 						this.$message({
-							message: '你本次的考试成绩为：' + this.totalScore + '分',
+							message: 'Your test score this time is：' + this.totalScore + '分',
 							type: 'success'
 						});
 						// 考试成绩存库
@@ -461,11 +461,11 @@
 							"exam_id": this.getExam.id,
 							"student_id": temp.getStudent.id,
 							"score": this.totalScore
-						}).then(res => { //处理成功的函数 相当于success
-							//跳转到我的成绩
+						}).then(res => { //The function of successful processing is equivalent to success
+							//Jump to my grades
 							this.$router.push('/grade')
 						}).catch(function(error) {
-							//错误处理 相当于error
+							//Error treatment is equivalent toerror
 						})
 			
 					}

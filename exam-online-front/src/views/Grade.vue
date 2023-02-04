@@ -3,13 +3,13 @@
 		<el-table :data="pagination.results" style="width: 100%" v-loading="loading" border>
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="creat_time" label="评卷时间" sortable>
+			<el-table-column prop="creat_time" label="Papers" sortable>
 				<template slot-scope="scope">
 					<i class="el-icon-time"></i>
 					<span style="margin-left: 10px">{{ scope.row.create_time.replace('T', ' ').substring(0, 19) }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="exam.name" label="考试名称" width="300">
+			<el-table-column prop="exam.name" label="Test name" width="300">
 				<template slot-scope="scope">
 					<el-popover trigger="hover" placement="top">
 						<p>Test name: {{ scope.row.exam.name }}</p>
@@ -23,23 +23,23 @@
 					</el-popover>
 				</template>
 			</el-table-column>
-			<el-table-column prop="score" label="得分" width="150" sortable>
+			<el-table-column prop="score" label="Score" width="150" sortable>
 				<template slot-scope="scope">
 					<i class="el-icon-trophy"></i>
 					<span style="margin-left: 10px">{{ scope.row.score }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="exam.exam_date" label="考试时间" width="180" sortable>
+			<el-table-column prop="exam.exam_date" label="Examination time" width="180" sortable>
 				<template slot-scope="scope">
 					<i class="el-icon-time"></i>
 					<span style="margin-left: 10px">{{ scope.row.exam.exam_date }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="score" label="筛选" width="200" :filters="[{ text: '及格', value: 'pass' }, { text: '不及格', value: 'fail' }]"
+			<el-table-column prop="score" label="Filter" width="200" :filters="[{ text: 'Pass', value: 'pass' }, { text: 'Failed', value: 'fail' }]"
 			 :filter-method="filterScore" filter-placement="bottom-end">
 				<template slot-scope="scope">
-					<el-tag v-if="scope.row.score >= 60" type="success" disable-transitions>及格</el-tag>
-					<el-tag v-if="scope.row.score < 60" type="warning" disable-transitions>不及格</el-tag>
+					<el-tag v-if="scope.row.score >= 60" type="success" disable-transitions>Pass</el-tag>
+					<el-tag v-if="scope.row.score < 60" type="warning" disable-transitions>Failed</el-tag>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -71,7 +71,7 @@
 			this.loading = true
 		},
 		methods: {
-			//获取成绩信息
+			//Get results information
 			getGradeInfo() {
 				this.$axios(`api/grades/?format=json`, {
 					params: {
@@ -87,7 +87,7 @@
 					console.log(error)
 				})
 			},
-			//过滤及格和不及格
+			//Filtering and failure
 			filterScore(value, row) {
 				if (value === 'pass') {
 					return row.score >= 60;
@@ -97,15 +97,15 @@
 					return row.score > 0
 				}
 			},
-			//改变每页条数
+			//Change the number per page
 			handleSizeChange(val) {
-				// console.log(`每页 ${val} 条`);
+				// console.log(`Each page $ {val}`);
 				this.page_size = val
 				this.getGradeInfo()
 			},
-			//跳转到多少页
+			//How many pages jump to
 			handleCurrentChange(val) {
-				// console.log(`当前页: ${val}`);
+				// console.log(`current page: ${val}`);
 				this.page = val
 				this.getGradeInfo()
 			}

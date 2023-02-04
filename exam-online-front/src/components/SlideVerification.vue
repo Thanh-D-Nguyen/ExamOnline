@@ -12,28 +12,28 @@
 		data() {
 			return {
 				beginClientX: 0,
-				/*距离屏幕左端距离*/
+				/*Distance from the left end of the screen*/
 				mouseMoveState: false,
-				/*触发拖动状态  判断*/
+				/*Trigger the drag state judgment*/
 				maxwidth: '',
-				/*拖动最大宽度，依据滑块宽度算出来的*/
-				confirmWords: '拖动滑块验证',
-				/*滑块文字*/
-				confirmSuccess: false /*验证成功判断*/
+				/*Drag the maximum width, calculated according to the width of the slider*/
+				confirmWords: 'Drag slider verification',
+				/*Slide text*/
+				confirmSuccess: false /*Prove successful judgment*/
 			}
 		},
 		methods: {
 			mousedownFn: function(e) {
 				if (!this.confirmSuccess) {
-					e.preventDefault && e.preventDefault(); //阻止文字选中等 浏览器默认事件
+					e.preventDefault && e.preventDefault(); //Prevent the default event of the selected browser selection of the text
 					this.mouseMoveState = true;
 					this.beginClientX = e.clientX;
 				}
-			}, //mousedoen 事件
+			}, //mousedoen event
 			successFunction() {
 				this.confirmSuccess = true
-				this.confirmWords = '验证通过';
-				// 向父组件传递验证状态
+				this.confirmWords = 'Verify';
+				// Pass the verification status to the parent component
 				this.$emit('check-result', this.confirmSuccess)
 				if (window.addEventListener) {
 					document.getElementsByTagName('html')[0].removeEventListener('mousemove', this.mouseMoveFn);
@@ -44,7 +44,7 @@
 				document.getElementsByClassName('drag_text')[0].style.color = '#fff'
 				document.getElementsByClassName('handler')[0].style.left = this.maxwidth + 'px';
 				document.getElementsByClassName('drag_bg')[0].style.width = this.maxwidth + 'px';
-			}, //验证成功函数
+			}, //Verifying success function
 			mouseMoveFn(e) {
 				if (this.mouseMoveState) {
 					let width = e.clientX - this.beginClientX;
@@ -55,7 +55,7 @@
 						this.successFunction();
 					}
 				}
-			}, //mousemove事件
+			}, //mousemove event
 			moseUpFn(e) {
 				this.mouseMoveState = false;
 				var width = e.clientX - this.beginClientX;
@@ -63,7 +63,7 @@
 					document.getElementsByClassName('handler')[0].style.left = 0 + 'px';
 					document.getElementsByClassName('drag_bg')[0].style.width = 0 + 'px';
 				}
-			} //mouseup事件
+			} //mouseup event
 		},
 		mounted() {
 			this.maxwidth = this.$refs.dragDiv.clientWidth - this.$refs.moveDiv.clientWidth;

@@ -3,42 +3,42 @@
 
 		<el-card class="box-card">
 			<div slot="header" class="clearfix">
-				<span>组卷模块</span>
+				<span>Group roll module</span>
 			</div>
 			<el-form ref="form" :model="form" label-width="80px">
-				<el-form-item label="单选题:">
+				<el-form-item label="Single -choice question:">
 					<el-slider v-model="form.choice_number" :step="1" :max="10" show-stops></el-slider>
 				</el-form-item>
-				<el-form-item label="填空题:">
+				<el-form-item label="Fill in empty questions:">
 					<el-slider v-model="form.fill_number" :step="1" :max="10" show-stops></el-slider>
 				</el-form-item>
-				<el-form-item label="判断题:">
+				<el-form-item label="True or False:">
 					<el-slider v-model="form.judge_number" :step="1" :max="10" show-stops></el-slider>
 				</el-form-item>
-				<el-form-item label="编程题:">
+				<el-form-item label="Programming questions:">
 					<el-slider v-model="form.program_number" :step="1" :max="10" show-stops></el-slider>
 				</el-form-item>
-				<el-form-item label="难易度:">
+				<el-form-item label="Degree of difficulty:">
 					<el-rate v-model="form.level" :texts="level" show-text></el-rate>
 				</el-form-item>
 			</el-form>
-			<el-button type="primary" @click="toAnswer">生成试卷并开始答题</el-button>
+			<el-button type="primary" @click="toAnswer">Generate test papers and start answering questions</el-button>
 		</el-card>
 		<el-table :data="pagination.results" style="width: 61%" v-loading="loading" border>
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="creat_time" label="练习时间" width="250px" sortable>
+			<el-table-column prop="creat_time" label="Practice time" width="250px" sortable>
 				<template slot-scope="scope">
 					<i class="el-icon-time"></i>
 					<span style="margin-left: 10px">{{ scope.row.create_time.replace('T', ' ').substring(0, 19) }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="name" label="练习名称" width="250px">
+			<el-table-column prop="name" label="Practice name" width="250px">
 			</el-table-column>
 			<el-table-column>
 				<template slot-scope="scope">
 					<router-link target="_blank" :to="{path:'/record',query:{practice_id:scope.row.id}}">
-						<el-button type="text" size="small">查看记录</el-button>
+						<el-button type="text" size="small">View record</el-button>
 					</router-link>
 				</template>
 			</el-table-column>
@@ -60,11 +60,11 @@
 					level: 1,
 				},
 				exam: {
-					name: '模拟测试',
+					name: 'Simulation test',
 					total_time: 120
 				},
 				practice: {},
-				level: ["入门", "简单", "普通", "较难", "困难"],
+				level: ["Getting Started", "Simple", "Normal", "More difficult", "Difficulty"],
 				loading: false,
 				page: 1,
 				page_size: 5,
@@ -85,12 +85,12 @@
 		},
 		methods: {
 			toAnswer() {
-				//用localStorage存储考试信息和试卷信息
+				//Use LocalStorage to store test information and test paper information
 				axios.post(`api/practices/`, {
-					name: '模拟练习',
+					name: 'Simulation exercise',
 					student_id: this.$store.state.student.id,
 				}).then(res => {
-					console.log(res.data); //处理成功的函数 相当于success
+					console.log(res.data); //The function of successful processing is equivalent to Success
 					this.practice = res.data;
 					localStorage.removeItem('practice');
 					localStorage.removeItem('paper');
@@ -103,10 +103,10 @@
 						params: {}
 					})
 				}).catch(function(error) {
-					console.log(error) //错误处理 相当于error
+					console.log(error) //Error treatment is equivalent to ERROR
 				});
 			},
-			//获取模拟练习
+			//Get the simulation exercise
 			getPracticeInfo() {
 				this.$axios(`api/practices/?format=json`, {
 					params: {
@@ -122,15 +122,15 @@
 					console.log(error)
 				})
 			},
-			//改变每页条数
+			//Change the number per page
 			handleSizeChange(val) {
-				// console.log(`每页 ${val} 条`);
+				// console.log(`Each page $ {val}`);
 				this.page_size = val
 				this.getPracticeInfo()
 			},
-			//跳转到多少页
+			//How many pages jump to
 			handleCurrentChange(val) {
-				// console.log(`当前页: ${val}`);
+				// console.log(`current page: ${val}`);
 				this.page = val
 				this.getPracticeInfo()
 			}

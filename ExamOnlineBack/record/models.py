@@ -7,13 +7,13 @@ from user.models import Student
 
 
 class Record(models.Model):
-    """练习记录"""
-    practice = models.ForeignKey(Practice, verbose_name="练习", on_delete=models.CASCADE)
-    student = models.ForeignKey(Student, verbose_name="学生", on_delete=models.CASCADE)
-    your_answer = models.TextField("你的作答", null=True, blank=True)
+    """Practice record"""
+    practice = models.ForeignKey(Practice, verbose_name="Practise", on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, verbose_name="Student", on_delete=models.CASCADE)
+    your_answer = models.TextField("Your answer", null=True, blank=True)
 
     class Meta:
-        # 抽象类
+        # Abstract class
         abstract = True
 
     def __str__(self):
@@ -21,39 +21,39 @@ class Record(models.Model):
 
 
 class ChoiceRecord(Record):
-    """选择题答题记录"""
-    choice = models.ForeignKey(Choice, verbose_name="选择题", on_delete=models.CASCADE)
+    """Selected Questions Answer Record"""
+    choice = models.ForeignKey(Choice, verbose_name="Choice", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['id']
-        verbose_name = '选择题答题记录'
+        verbose_name = 'Selected Questions Answer Record'
         verbose_name_plural = verbose_name
 
 
 class FillRecord(Record):
-    """填空题答题记录"""
-    fill = models.ForeignKey(Fill, verbose_name="填空题", on_delete=models.CASCADE)
+    """Fill in the blank questions and answer records"""
+    fill = models.ForeignKey(Fill, verbose_name="Blank", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['id']
-        verbose_name = '填空题答题记录'
+        verbose_name = 'Fill in the blank questions and answer records'
         verbose_name_plural = verbose_name
 
 
 class JudgeRecord(Record):
-    judge = models.ForeignKey(Judge, verbose_name="判断题", on_delete=models.CASCADE)
+    judge = models.ForeignKey(Judge, verbose_name="True or False", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['id']
-        verbose_name = '判断题答题记录'
+        verbose_name = 'Judgment question answer record'
         verbose_name_plural = verbose_name
 
 
 class ProgramRecord(Record):
-    program = models.ForeignKey(Program, verbose_name="编程题", on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, verbose_name="Programming", on_delete=models.CASCADE)
     cmd_msg = models.TextField("输出结果", null=True, blank=True)
 
     class Meta:
         ordering = ['id']
-        verbose_name = '编程题答题记录'
+        verbose_name = 'Programming Questions Answer Record'
         verbose_name_plural = verbose_name

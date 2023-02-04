@@ -112,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Shanghai'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -128,7 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# restframework配置
+# restframework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -136,16 +136,16 @@ REST_FRAMEWORK = {
         # Json Web Token
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
-    # restframework新版3.10.1需要指定默认schema
+    # Restframework new version 3.10.1 needs to specify the default SCHEMA
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
-# JWT设置
+# JWT set up
 JWT_AUTH = {
-    # token的有效期限
+    # token Validity period
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
-    # JWT跟前端保持一致，比如“token”这里设置成JWT
+    # JWT is consistent with the front end, for example, "Token" is set here as jwt
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
-    # 自定义方法返回用户信息
+    # Custom method Return to user information
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'user.views.jwt_response_payload_handler'
 }

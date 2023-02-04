@@ -13,7 +13,7 @@ const routes = [{
 				component: () => import('../views/Exam.vue'),
 				name: 'exam',
 				meta: {
-					title: '考试中心'
+					title: 'examination centre'
 				}
 			},
 			{
@@ -21,7 +21,7 @@ const routes = [{
 				name: 'Practice',
 				component: () => import('../views/Practice.vue'),
 				meta: {
-					title: '模拟练习'
+					title: 'Simulation exercise'
 				}
 			},
 			{
@@ -29,7 +29,7 @@ const routes = [{
 				name: 'Grade',
 				component: () => import('../views/Grade.vue'),
 				meta: {
-					title: '查询成绩'
+					title: 'Query score'
 				}
 			},
 			{
@@ -37,7 +37,7 @@ const routes = [{
 				name: 'Center',
 				component: () => import('../views/Center.vue'),
 				meta: {
-					title: '个人中心'
+					title: 'Personal center'
 				}
 			},
 			{
@@ -45,7 +45,7 @@ const routes = [{
 				name: 'Password',
 				component: () => import('../views/Password.vue'),
 				meta: {
-					title: '修改密码'
+					title: 'change Password'
 				}
 			},
 			{
@@ -53,7 +53,7 @@ const routes = [{
 				name: 'Paper',
 				component: () => import('../views/Paper.vue'),
 				meta: {
-					title: '试卷详情'
+					title: 'Test papers details'
 				}
 			},
 			{
@@ -61,7 +61,7 @@ const routes = [{
 				name: 'Score',
 				component: () => import('../views/Score.vue'),
 				meta: {
-					title: '考试得分'
+					title: 'Test score'
 				}
 			}
 		]
@@ -71,7 +71,7 @@ const routes = [{
 		name: 'Answer',
 		component: () => import('../views/Answer.vue'),
 		meta: {
-			title: '答题界面'
+			title: 'Answer interface '
 		}
 	},
 	{
@@ -79,7 +79,7 @@ const routes = [{
 		name: 'Record',
 		component: () => import('../views/Record.vue'),
 		meta: {
-			title: '练习记录'
+			title: 'Practice record'
 		}
 	},
 	{
@@ -87,7 +87,7 @@ const routes = [{
 		name: 'Login',
 		component: () => import('../views/Login.vue'),
 		meta: {
-			title: '登录界面'
+			title: 'login interface'
 		}
 	},
 	{
@@ -95,7 +95,7 @@ const routes = [{
 		name: 'Register',
 		component: () => import('../views/Register.vue'),
 		meta: {
-			title: '注册界面'
+			title: 'Registration interface'
 		}
 	},
 	{
@@ -103,7 +103,7 @@ const routes = [{
 		name: 'Error',
 		component: () => import('../views/Error.vue'),
 		meta: {
-			title: '404错误界面'
+			title: '404 error interface'
 		}
 	}
 ]

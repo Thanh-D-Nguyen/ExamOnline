@@ -13,7 +13,7 @@ from user.serializers import StudentSerializer, UserDetailSerializer, ClazzSeria
 # Create your views here.
 class CustomBackend(ModelBackend):
     """
-    自定义用户验证
+    Custom user verification
     """
 
     def authenticate(self, username=None, password=None, **kwargs):
@@ -27,7 +27,7 @@ class CustomBackend(ModelBackend):
 
 def jwt_response_payload_handler(token, user=None, request=None):
     """
-    设置jwt登录之后返回token和user信息
+    After setting jwt login, return token and user information
     """
     student = Student.objects.get(user=user)
     return {
@@ -39,7 +39,7 @@ def jwt_response_payload_handler(token, user=None, request=None):
 
 class RegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """
-    用户注册
+    User registration
     """
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
@@ -47,12 +47,12 @@ class RegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     def create(self, request, *args, **kwargs):
         user = User.objects.filter(username=request.data['username'])
         if user:
-            return Response({'msg': '用户名已存在'}, status=status.HTTP_201_CREATED)
+            return Response({'msg': 'Username already exists'}, status=status.HTTP_201_CREATED)
         user_detail = UserDetailSerializer(data=request.data)
         if user_detail.is_valid():
             user_detail.save()
         user = User.objects.get(username=request.data['username'])
-        # 密码转成密文存储
+        # Code convert to ciphertext storage
         user.password = make_password(user.password)
         user.save()
         student = Student(user=user, name=request.data['name'])
@@ -63,41 +63,41 @@ class RegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
 class UpdatePwdApi(APIView):
     """
-    修改用户密码
+    Modify the user password
     """
 
     def patch(self, request):
-        # 获取参数
+        # Get parameters
         old_pwd = request.data['oldpwd']
         new_pwd = request.data['newpwd']
         user_id = request.data['userid']
-        # 获得请求用户
+        # Obtain a request user
         user = User.objects.get(id=user_id)
-        # 检查原始密码是否正确
+        # Check whether the original password is correct
         if user.check_password(old_pwd):
             user.set_password(new_pwd)
             user.save()
         else:
             return Response(data={'msg': 'fail'}, status=status.HTTP_200_OK)
-        # 返回数据
+        # Return data
         return Response(data={'msg': 'success'}, status=status.HTTP_200_OK)
 
 
 class StudentViewSet(viewsets.ModelViewSet):
     """
-    学生信息
+    student information
     """
-    # 查询集
+    # Query set
     queryset = Student.objects.all().order_by('id')
-    # 序列化
+    # Serialization
     serializer_class = StudentSerializer
 
 
 class ClazzListViewSet(viewsets.ModelViewSet):
     """
-    班级信息
+    Class information
     """
-    # 查询集
+    # Query set
     queryset = Clazz.objects.all().order_by('id')
-    # 序列化
+    # Serialization
     serializer_class = ClazzSerializer

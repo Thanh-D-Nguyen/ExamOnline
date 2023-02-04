@@ -58,7 +58,7 @@ class Teacher(models.Model):
     institute = models.CharField("College", max_length=20, default="")
 
     # One -to -one association field
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="用户")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="user")
 
     class Meta:
         ordering = ['id']

@@ -2,13 +2,13 @@
 	<div class="center">
 		<el-form ref="centerForm" status-icon :model="centerForm" :rules="rules" label-width="80px">
 			<h1>个人中心</h1>
-			<el-form-item label="姓名" prop="name">
+			<el-form-item label="Name" prop="name">
 				<el-input v-model="centerForm.name"></el-input>
 			</el-form-item>
-			<el-form-item label="性别" prop="gender">
-				<el-select v-model="centerForm.gender" placeholder="请选择性别">
-					<el-option label="男" value="m"></el-option>
-					<el-option label="女" value="f"></el-option>
+			<el-form-item label="gender" prop="gender">
+				<el-select v-model="centerForm.gender" placeholder="Please choose gender ">
+					<el-option label="Male" value="m"></el-option>
+					<el-option label="Female" value="f"></el-option>
 				</el-select>
 			</el-form-item>
 			<!-- <el-form-item label="年级" prop="year">
@@ -22,15 +22,15 @@
 			<el-form-item label="专业" prop="major">
 				<el-input v-model="centerForm.major"></el-input>
 			</el-form-item> -->
-			<el-form-item label="班级" prop="clazz">
-				<el-select v-model="centerForm.clazz" placeholder="请选择年级">
+			<el-form-item label="Class" prop="clazz">
+				<el-select v-model="centerForm.clazz" placeholder="Please select grade ">
 					<el-option v-for="item in clazzOptions" :key="item.id" :label="item.year + item.major + item.clazz" :value="item.id">
 					</el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="updateInfo('centerForm')">确认修改</el-button>
-				<el-button @click="cancel">取消</el-button>
+				<el-button type="primary" @click="updateInfo('centerForm')">Confirm the changes</el-button>
+				<el-button @click="cancel">Cancel</el-button>
 			</el-form-item>
 		</el-form>
 	</div>
@@ -49,45 +49,45 @@
 					clazz_id: null,
 					user: null
 				},
-				clazzOptions: [], //班级下拉数据
+				clazzOptions: [], //Class drop -down data
 				rules: {
 					name: [{
 							required: true,
-							message: '请输入姓名',
+							message: 'Please type in your name',
 							trigger: 'blur'
 						},
 						{
 							min: 2,
 							max: 10,
-							message: '长度在 2 到 8 个字符',
+							message: 'The length is from 2 to 8 characters',
 							trigger: 'blur'
 						}
 					],
 					gender: [{
 						required: true,
-						message: '请选择性别',
+						message: 'Please select gender',
 						trigger: 'change'
 					}],
 					// year: [{
 					// 	required: true,
-					// 	message: '请选择年级',
+					// 	message: 'Please select grade',
 					// 	trigger: 'change'
 					// }],
 					// major: [{
 					// 		required: true,
-					// 		message: '请输入专业',
+					// 		message: 'Please enter the professional',
 					// 		trigger: 'blur'
 					// 	},
 					// 	{
 					// 		min: 8,
 					// 		max: 30,
-					// 		message: '长度在 8 到 30 个字符',
+					// 		message: 'Length from 8 to 30 characters',
 					// 		trigger: 'blur'
 					// 	}
 					// ],
 					clazz: [{
 							required: true,
-							message: '请选择班级',
+							message: 'Please select the class',
 							trigger: 'change'
 						},
 					]
@@ -106,14 +106,14 @@
 							console.log(res)
 							if (res.status == 200) {
 								this.$message({
-									message: '更新个人信息成功',
+									message: 'Update personal information success',
 									type: 'success'
 								});
 								//更新缓存
 								this.$store.commit("sestStudent", this.centerForm)
 							} else {
 								this.$message({
-									type: '更新个人信息失败',
+									type: 'Update personal information failure',
 									type: 'error'
 								});
 							}
@@ -121,11 +121,11 @@
 							console.log(error)
 						})
 					} else {
-						//表单验证失败
+						//Form verification failed
 					}
 				});
 			},
-			// 获取班级信息
+			// Get class information
 			getClazzInfo() {
 				this.$axios(`/api/clazzs/?format=json`, {
 					// params: {

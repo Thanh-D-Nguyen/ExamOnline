@@ -10,14 +10,14 @@ from record.serializers import ChoiceRecordSerializer, FillRecordSerializer, Jud
 
 
 class ChoiceRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
-    """选择题练习记录"""
-    # 数据集
+    """Selected questions practice record"""
+    # data set
     queryset = ChoiceRecord.objects.all()
-    # 序列化
+    # Serialization
     serializer_class = ChoiceRecordSerializer
 
     def get_queryset(self):
-        # 模拟练习ID
+        # Simulation exercise ID
         practice_id = self.request.query_params.get('practice_id')
         if practice_id:
             self.queryset = ChoiceRecord.objects.filter(practice_id=practice_id)
@@ -25,14 +25,14 @@ class ChoiceRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, vi
 
 
 class FillRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
-    """填空题练习记录"""
-    # 数据集
+    """Fill in the blank questions practice record"""
+    # data set
     queryset = FillRecord.objects.all()
-    # 序列化
+    # Serialization
     serializer_class = FillRecordSerializer
 
     def get_queryset(self):
-        # 模拟练习ID
+        # Simulation exercise ID
         practice_id = self.request.query_params.get('practice_id')
         if practice_id:
             self.queryset = FillRecord.objects.filter(practice_id=practice_id)
@@ -40,14 +40,14 @@ class FillRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, view
 
 
 class JudgeRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
-    """选择题练习记录"""
-    # 数据集
+    """Selected questions practice record"""
+    # data set
     queryset = JudgeRecord.objects.all()
-    # 序列化
+    # Serialization
     serializer_class = JudgeRecordSerializer
 
     def get_queryset(self):
-        # 模拟练习ID
+        # Simulation exercise ID
         practice_id = self.request.query_params.get('practice_id')
         if practice_id:
             self.queryset = JudgeRecord.objects.filter(practice_id=practice_id)
@@ -55,14 +55,14 @@ class JudgeRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, vie
 
 
 class ProgramRecordListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
-    """编程题练习记录"""
-    # 数据集
+    """Programming questions practice record"""
+    # data set
     queryset = ProgramRecord.objects.all()
-    # 序列化
+    # Serialization
     serializer_class = ProgramRecordSerializer
 
     def get_queryset(self):
-        # 模拟练习ID
+        # Simulation exercise ID
         practice_id = self.request.query_params.get('practice_id')
         if practice_id:
             self.queryset = ProgramRecord.objects.filter(practice_id=practice_id)

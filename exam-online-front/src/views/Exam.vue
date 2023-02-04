@@ -2,15 +2,15 @@
 	<div id="exam">
 		<el-row type="flex" justify="center">
 			<el-col :span="4">
-				<el-input v-model="key" placeholder="请输入考试名称" prefix-icon="el-icon-search" clearable></el-input>
+				<el-input v-model="key" placeholder="Please enter the test name" prefix-icon="el-icon-search" clearable></el-input>
 			</el-col>
 			<el-col :span="4">
-				<el-button type="primary" @click="searchExam()">搜索试卷</el-button>
+				<el-button type="primary" @click="searchExam()">Search test paper</el-button>
 			</el-col>
 		</el-row>
 		</el-row>
 		<el-row>
-			<h3 style="border-left: solid 10px rgb(220, 208, 65);">考试列表</h3>
+			<h3 style="border-left: solid 10px rgb(220, 208, 65);">Test list</h3>
 			<div style="padding-left: 15px">
 				<el-col :span="4" v-for="(item, index) in pagination.results" :key="index" :offset="index > 0 ? 1 : 0">
 					<el-card :body-style="{ padding: '0px' }" v-loading="loading">
@@ -18,15 +18,15 @@
 						<div style="padding: 14px;">
 							<span>{{item.name}}</span>
 							<p>
-								<span>考试时间：{{item.exam_date}}</span>
+								<span>examination time：{{item.exam_date}}</span>
 								<br />
-								<span>考试时长：{{item.total_time}}分钟</span>
+								<span>Exam duration:{{item.total_time}}minute</span>
 							</p>
 							<div class="bottom clearfix">
 								<!-- <router-link target="_blank" :to="{path:'/answer',query:{exam: pagination.results[index],paper:item.paper}}">
-									<el-button type="text" class="button">开始做题</el-button>
+									<el-button type="text" class="button">Start doing the question </el-button>
 								</router-link> -->
-								<el-button type="text" class="button" @click="toAnswer(index)">开始做题</el-button>
+								<el-button type="text" class="button" @click="toAnswer(index)">Start doing questions</el-button>
 							</div>
 						</div>
 					</el-card>
@@ -58,7 +58,7 @@
 			Pagination
 		},
 		methods: {
-			//获取考试信息
+			//Get test information
 			getExamInfo() {
 				this.$axios(`/api/exams/?format=json`, {
 					params: {
@@ -74,19 +74,19 @@
 					console.log(error)
 				})
 			},
-			//改变每页条数
+			//Change the number per page
 			handleSizeChange(val) {
-				// console.log(`每页 ${val} 条`);
+				// console.log(`Each page $ {val}`);
 				this.page_size = val
 				this.searchExam()
 			},
-			//跳转到多少页
+			//How many pages jump to
 			handleCurrentChange(val) {
-				// console.log(`当前页: ${val}`);
+				// console.log(`current page: ${val}`);
 				this.page = val
 				this.searchExam()
 			},
-			//搜索考试
+			//Search exam
 			searchExam() {
 				if (this.key) {
 					this.$axios(`/api/exams/?format=json`, {
@@ -105,9 +105,9 @@
 					this.getExamInfo()
 				}
 			},
-			//跳转到答题页
+			//Jump to the answer page
 			toAnswer(index) {
-				//用localStorage存储考试信息和试卷信息
+				//Use LocalStorage to store test information and test paper information
 				localStorage.removeItem('exam');
 				localStorage.removeItem('paper');
 				sessionStorage.removeItem('isPractice')

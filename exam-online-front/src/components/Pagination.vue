@@ -19,15 +19,15 @@
 			count: Number,
 		},
 		methods: {
-			//改变每页条数
+			//Change the number per page
 			handleSizeChange(val) {
-				console.log(`每页 ${val} 条`);
+				console.log(`Each page $ {val}`);
 				this.page_size = val
 				this.$emit('size-change', val)
 			},
-			//跳转到多少页
+			//How many pages jump to
 			handleCurrentChange(val) {
-				// console.log(`$当前页: ${val}`);
+				// console.log(`$current page: ${val}`);
 				this.page = val
 				this.$emit('current-change', val)
 			}

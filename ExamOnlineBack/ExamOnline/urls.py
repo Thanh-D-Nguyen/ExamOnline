@@ -27,7 +27,7 @@ from user.views import RegisterViewSet, StudentViewSet, UpdatePwdApi, ClazzListV
 
 router = DefaultRouter()
 
-# 配置exams的url
+# Configure the URL of EXAMS
 router.register(r'exams', ExamListViewSet)
 router.register(r'grades', GradeListViewSet)
 router.register(r'choices', ChoiceListViewSet)
@@ -45,7 +45,7 @@ router.register(r'records/programs', ProgramRecordListViewSet)
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    path('docs/', include_docs_urls('Python在线考试系统')),
+    path('docs/', include_docs_urls('Python online test system')),
     path('api-auth/', include('rest_framework.urls')),
     path('jwt-auth/', obtain_jwt_token),
     path('check-program/', CheckProgramApi.as_view()),

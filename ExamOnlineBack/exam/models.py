@@ -4,16 +4,15 @@ from user.models import Student, Clazz
 from datetime import datetime
 import random
 
-
 # Create your models here.
 class Paper(models.Model):
     """Test papers model"""
     LEVEL_CHOICES = (
-        ('1', 'getting Started'),
+        ('1', 'Begin'),
         ('2', 'Simple'),
-        ('3', 'usually'),
-        ('4', 'More difficult'),
-        ('5', 'difficulty')
+        ('3', 'Normal'),
+        ('4', 'Difficult'),
+        ('5', 'Expert')
     )
     name = models.CharField("Test paper name", max_length=20, default="")
     score = models.PositiveSmallIntegerField("Total score", default=100)

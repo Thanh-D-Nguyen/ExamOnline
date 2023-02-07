@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'user',
     'exam',
     'question',
-    'record'
-]
+    'record',
+ ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -159,3 +159,5 @@ JWT_AUTH = {
     # Custom method Return to user information
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'user.views.jwt_response_payload_handler'
 }
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

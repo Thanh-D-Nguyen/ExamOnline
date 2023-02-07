@@ -36,14 +36,14 @@ class Choice(models.Model):
         ('3', 'Choice Three'),
         ('4', 'Choice Four'),
     )
-
     question = models.TextField("Question", default="")
-    answer_A = models.TextField("Option A", default="")
-    answer_B = models.TextField("Option B", default="")
-    answer_C = models.TextField("Option C", default="")
-    answer_D = models.TextField("Option D", default="")
-    answer_E = models.TextField("Option E", default="", blank=True)
-    answer_F = models.TextField("Option F", default="", blank=True)
+
+    answer_A = models.CharField("Option A", max_length=255, default="")
+    answer_B = models.CharField("Option B", max_length=255, default="")
+    answer_C = models.CharField("Option C", max_length=255, default="")
+    answer_D = models.CharField("Option D", max_length=255, default="")
+    answer_E = models.CharField("Option E", max_length=255, default="", blank=True)
+    answer_F = models.CharField("Option F", max_length=255, default="", blank=True)
 
     answer_type = models.CharField("Answer Type", max_length=1, choices=ANSWER_TYPES, default="1")
 
@@ -59,7 +59,7 @@ class Choice(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.question
+        return 'Question id: %s' % self.id
 
 
 class Fill(models.Model):

@@ -6,7 +6,11 @@ class Card(models.Model):
     front = models.TextField()
     back = models.TextField()
     image = models.URLField(null=True, blank=True)
-    videoLink = models.URLField(null=True, blank=True)
+    video_link = models.URLField(null=True, blank=True)
+    class Meta:
+        ordering = ["id"]
+        db_table = 'card'
+        verbose_name = "flash card" 
 
 class Deck(models.Model):
     '''Desk Model'''
@@ -14,3 +18,7 @@ class Deck(models.Model):
     image = models.URLField(null=True, blank=True)
     description = models.TextField()
     cards = models.ManyToManyField(Card)
+    class Meta:
+        ordering = ["id"]
+        db_table = 'desk'
+        verbose_name = "desk card" 

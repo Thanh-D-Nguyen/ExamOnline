@@ -12,7 +12,7 @@ class ChoiceAdmin(object):
     search_fields = ['id', 'question']
     list_display_links = ['question']
     list_per_page = 10
-    # list_editable = ['question']
+    list_editable = ['question']
     model_icon = 'fa fa-check-square-o'
     import_export_args = {'import_resource_class': ChoiceResource}
 

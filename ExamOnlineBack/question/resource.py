@@ -6,7 +6,7 @@ from question.models import Choice, Fill, Judge, Program
 class ChoiceResource(resources.ModelResource):
     class Meta:
         model = Choice
-        fields = ('id', 'question', 'answer_A', 'answer_B', 'answer_C', 'answer_D', 'right_answer', 'analysis', 'score', 'level')
+        fields = ('id', 'question', 'answer_A', 'answer_B', 'answer_C', 'answer_D', 'answer_E', 'answer_F', 'answer_type', 'right_answers', 'analysis', 'score', 'level')
 
 
 class FillResource(resources.ModelResource):

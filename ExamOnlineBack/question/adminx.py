@@ -5,14 +5,15 @@ from question.resource import ChoiceResource, FillResource, JudgeResource, Progr
 
 
 class ChoiceAdmin(object):
-    list_display = ['id', 'question', 'answer_A', 'answer_B', 'answer_C', 'answer_D',
-                    'right_answer', 'analysis', 'score', 'level']
+    list_display = ['id', 'question', 'answer_A', 'answer_B', 'answer_C', 
+                    'answer_D', 'answer_E', 'answer_F','answer_type',
+                    'right_answers', 'analysis', 'score', 'level']
     list_filter = ['level']
     search_fields = ['id', 'question']
     list_display_links = ['question']
     list_per_page = 10
     # list_editable = ['question']
-    model_icon = 'fa fa-question-circle-o'
+    model_icon = 'fa fa-check-square-o'
     import_export_args = {'import_resource_class': ChoiceResource}
 
 
@@ -23,7 +24,7 @@ class FillAdmin(object):
     list_display_links = ['question']
     list_per_page = 10
     # list_editable = ['question']
-    model_icon = 'fa fa-edit '
+    model_icon = 'fa fa-edit'
     import_export_args = {'import_resource_class': FillResource}
 
 

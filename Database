@@ -1,0 +1,13 @@
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc" -delete
+
+
+/*
+django.db.migrations.exceptions.MigrationSchemaMissing: Unable to create the django_migrations table (permission denied for schema public
+LINE 1: CREATE TABLE "django_migrations" ("id" serial NOT NULL PRIMA...
+*/
+create user thanhnv;
+create database examdb;
+alter role thanhnv with password 'thanh123@';
+grant all privileges on database examdb to thanhnv;
+alter database examdb owner to thanhnv;

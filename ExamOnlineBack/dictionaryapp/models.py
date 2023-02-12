@@ -12,6 +12,7 @@ class Example(models.Model):
         db_table = 'example'
         verbose_name = "Example"
         verbose_name_plural = verbose_name
+        # app_label = 'dictionaryapp'
 
     def __str__(self):
         return "id: " + self.ref_id
@@ -32,6 +33,7 @@ class Grammar(models.Model):
         db_table = 'grammar'
         verbose_name = "Grammar"
         verbose_name_plural = verbose_name
+        # app_label = 'dictionaryapp'
 
     def __str__(self):
         return self.define
@@ -52,6 +54,7 @@ class JaVi(models.Model):
         db_table = 'javi'
         verbose_name = "Japanese - Vietnamese"
         verbose_name_plural = verbose_name
+        # app_label = 'dictionaryapp'
 
     def __str__(self):
         return self.word
@@ -78,6 +81,7 @@ class Kanji(models.Model):
         db_table = 'kanji'
         verbose_name = "Kanji"
         verbose_name_plural = verbose_name
+        # app_label = 'dictionaryapp'
 
     def __str__(self):
         return self.kanji
@@ -93,6 +97,7 @@ class ViJa(models.Model):
         db_table = 'vija'
         verbose_name = "Vietnamese - Japanese"
         verbose_name_plural = verbose_name
+        # app_label = 'dictionaryapp'
 
     def __str__(self):
         return self.word

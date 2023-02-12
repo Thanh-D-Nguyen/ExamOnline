@@ -4,7 +4,7 @@ Including Backend and Frontend
 
 1. Create super user:
 ```
-python manage.py createsuperuser
+python3.9 manage.py createsuperuser
 ```
 2. Prepare and start backend server:
 ```

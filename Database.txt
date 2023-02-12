@@ -13,7 +13,13 @@ LINE 1: CREATE TABLE "django_migrations" ("id" serial NOT NULL PRIMA...
 psql -U postgres
 
 create user thanhnv;
+
 create database examdb;
 alter role thanhnv with password 'thanh123@';
 grant all privileges on database examdb to thanhnv;
 alter database examdb owner to thanhnv;
+
+create database dictionarydb;
+
+grant all privileges on database dictionarydb to thanhnv;
+alter database dictionarydb owner to thanhnv;

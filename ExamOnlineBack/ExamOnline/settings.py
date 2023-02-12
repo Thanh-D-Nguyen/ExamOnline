@@ -32,8 +32,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -84,10 +84,34 @@ WSGI_APPLICATION = 'ExamOnline.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+# アプリケーションごとの接続先DBのマッピング
+DATABASE_APPS_MAPPING = {
+    'user': 'default',
+    'exam': 'default',
+    'question': 'default',
+    'record': 'default',
+    'flashcard': 'default',
+    'dictionaryapp': 'dictionaryapp'
+}
+
+# 利用するRouter, manage.pyから見ての相対パス
+DATABASE_ROUTERS = [
+    'ExamOnline.dbrouters.DatabaseRouter',
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'examdb',
+        'USER' : 'thanhnv',
+        'PASSWORD' : 'thanh123@',
+        'HOST' : 'localhost',
+        'PORT' : '5432'
+    },
+    'dictionaryapp': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dictionarydb',
         'USER' : 'thanhnv',
         'PASSWORD' : 'thanh123@',
         'HOST' : 'localhost',

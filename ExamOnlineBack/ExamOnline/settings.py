@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +47,8 @@ INSTALLED_APPS = [
     'exam',
     'question',
     'record',
+    'flashcard',
+    'dictionaryapp'
  ]
 
 MIDDLEWARE = [
@@ -83,13 +84,6 @@ WSGI_APPLICATION = 'ExamOnline.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -97,7 +91,7 @@ DATABASES = {
         'USER' : 'thanhnv',
         'PASSWORD' : 'thanh123@',
         'HOST' : 'localhost',
-        'PORT' : '5432',
+        'PORT' : '5432'
     }
 }
 

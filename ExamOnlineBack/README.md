@@ -1,4 +1,6 @@
 # ExamOnline
+Python3.9.13 base: conda
+
 ```
 asgiref==3.6.0
 certifi==2022.12.7
